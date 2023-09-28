@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <!-- <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css"> -->
+    <title>Team Commanders</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root{
+    font-size: 62.5%;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 5%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+}
+
+.logo{
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.social{
+    margin: 0 auto 0 50px;
+}
+
+.social a{
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+.social a:hover{
+    background: orangered;
+    
+}
+
+.social a i{
+    display: flex;
+    font-size: 25px;
+    color: #fff;
+    padding-top: 6px;
+    transition: all 0.5s ease;
+}
+
+.social a:hover i{
+    color: #000;
+}
+
+.navbar a{
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 30px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.banner{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.slider .slide{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+}
+
+.slide img{
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.slide.active img{
+    opacity: 1;
+}
+
+.slide .left-info{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: 0s;
+}
+
+.slide.active .left-info{
+    transform: translateX(0);
+    z-index: 1;
+    transition: 1s ease;
+}
+
+.left-info .penetrte-blur{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.penetrte-blur h1{
+    font-size: 175px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 5);
+}
+
+.left-info .content{
+    position: absolute;
+    bottom: 8%;
+    left: 10%;
+    color: #fff;
+}
+
+.content h3{
+    font-size: 20px;
+}
+
+.content p{
+    font-size: 16px;
+    margin: 10px 0 1.5rem;
+}
+
+.content .btn{
+    display: inline-block;
+    padding: 1.3rem 2.8rem;
+    background: #fff;
+    border: 2px solid white;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.6rem;
+    color: #444;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.5s ease;
+}
+
+.content .btn:hover{
+    background: transparent;
+    color: #fff;
+}
+
+.slide .right-info{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    /* background: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: 0s;
+}
+
+.slide.active .right-info{
+    transform: translateX(0);
+    z-index: 1;
+    transition: 1s ease;
+}
+
+.right-info h1{
+    font-size: 200px;
+    color: #fff;
+    text-shadow: 
+        0 1px 0 #ccc,
+        0 2px 0 #c9c9c9,
+        0 3px 0 #bbb,
+        0 4px 0 #b9b9b9,
+        0 5px 0 #aaa,  
+        0 6px 1px rgba(0, 0, 0, 0.1),  
+        0 0px 5px rgba(0, 0, 0, 0.1),  
+        0 1px 3px rgba(0, 0, 0, 0.3),  
+        0 3px 5px rgba(0, 0, 0, 0.2),  
+        0 5px 10px rgba(0, 0, 0, 0.25),  
+        0 10px 10px rgba(0, 0, 0, 0.2),  
+        0 20px 20px rgba(0, 0, 0, 0.15),  
+        ;
+}
+
+.right-info h3{
+    position: absolute;
+    font-size: 65px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(190%);
+    margin-left: 1.3rem;
+}
+
+.navigation{
+    position: absolute;
+    bottom: 8%;
+    right: 5%;
+    z-index: 99;
+}
+
+.navigation span{
+    display: inline-flex;
+    width: 5rem;
+    height: 5rem;
+    background: #fff;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    margin-left: 2.5rem;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation span:nth-child(1){
+    background: transparent;
+}
+
+.navigation span:nth-child(1):hover{
+    background: #fff;
+}
+
+.navigation span i{
+    color: #444;
+    transition: all .5s ease;
+}
+
+.navigation span:nth-child(1) i{
+    color: #fff;
+}
+
+.navigation span:nth-child(1):hover i{
+    color: #444;
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="" class="logo">COMMANDERS</a>
+
+        <div class="social">
+            <a href="https://www.instagram.com/vineeth_satya/"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/in/satya-vineeth-9027b323a/"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+
+        <nav class="navbar">
+            <a href="#">Team</a>
+            <a href="#">Services</a>
+            <a href="#">About us</a>
+            <a href="/register">Register</a>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <div class="slider">
+            <div class="slide active">
+                <img src="./images/1.jpg" alt="">
+                <div class="left-info">
+                    <div class="penetrte-blur">
+                        <h1>COMMA</h1>
+                    </div>
+                    <div class="content">
+                        <h3>00. Team COMMANDERS Esports</h3>
+                        <p>Commanders Esports is a professional esports team based in India. It was founded in 2021 by Satya Vineeth, a young entrepreneur and gamer. The team currently competes in the Battlegrounds Mobile India (BGMI), Commanders is not a part of the BGMI Professional League. Commanders Esports has a roster of 5 players.</p>
+                        <a href="#" class="btn">More Details</a>
+                    </div>
+                </div>
+                <div class="right-info">
+                    <h1>NDERS</h1>
+                    <h3>Esports</h3>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="./images/10.jpeg" alt="">
+                <div class="left-info">
+                    <div class="penetrte-blur">
+                        <h1>Snak</h1>
+                    </div>
+                    <div class="content">
+                        <h3>01. The Entry Fragger</h3>
+                        <p>Vineeth, also known by his in-game name SnakeEye, is the entry fragger of Commanders Esports. He is responsible for taking the first shots in a fight and creating openings for his teammates. He is a skilled and aggressive player who is not afraid to take risks. SnakeEye has been playing BGMI since its release in 2021. SnakeEye is a key player for Commanders Esports.</p>
+                        <a href="#" class="btn">More Details</a>
+                    </div>
+                </div>
+                <div class="right-info">
+                    <h1>eEye</h1>
+                    <h3>Vineeth</h3>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="./images/9.jpg" alt="">
+                <div class="left-info">
+                    <div class="penetrte-blur">
+                        <h1>Ven</h1>
+                    </div>
+                    <div class="content">
+                        <h3>02. The Supporter</h3>
+                        <p>Suraj, in-game name Venom, is the support player of Team Commanders in Battlegrounds Mobile India (BGMI). He is known for his aggressive playstyle and his ability to clutch in difficult situations. He is also a skilled sniper and fragger.</p>
+                        <a href="#" class="btn">More Details</a>
+                    </div>
+                </div>
+                <div class="right-info">
+                    <h1>om</h1>
+                    <h3>Suraj
+                    </h3>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="./images/4.jpg" alt="">
+                <div class="left-info">
+                    <div class="penetrte-blur">
+                        <h1>Fla</h1>
+                    </div>
+                    <div class="content">
+                        <h3>03. The IGL</h3>
+                        <p>Raghavendra, in-game name Flash, is the in-game leader (IGL) of Team Commanders in Battlegrounds Mobile India (BGMI). He is responsible for making strategic decisions during matches and leading his team to victory. He is known for his calm and composed demeanor under pressure, and his ability to make quick decisions.</p>
+                        <a href="#" class="btn">More Details</a>
+                    </div>
+                </div>
+                <div class="right-info">
+                    <h1>sh</h1>
+                    <h3>Raghu</h3>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="./images/8.jpg" alt="">
+                <div class="left-info">
+                    <div class="penetrte-blur">
+                        <h1>Mr. W</h1>
+                    </div>
+                    <div class="content">
+                        <h3>04. The All Rounder</h3>
+                        <p>Bharath, in-game name Mr. Bharath, is an all-rounder of Team Commanders in Battlegrounds Mobile India (BGMI). He is known for his versatility and his ability to play any role in a match. He is a skilled fragger, sniper, and support player.</p>
+                        <a href="#" class="btn">More Details</a>
+                    </div>
+                </div>
+                <div class="right-info">
+                    <h1>anted</h1>
+                    <h3>Bharath</h3>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="./images/6.jpg" alt="">
+                <div class="left-info">
+                    <div class="penetrte-blur">
+                        <h1>Sass</h1>
+                    </div>
+                    <div class="content">
+                        <h3>05. The Extra</h3>
+                        <p>Dhanush, in-game name Sassy Boi, is an extra player of Team Commanders in Battlegrounds Mobile India (BGMI). He is a skilled player who is able to fill in for any role in the team. He is also a good coach and he helps the team to improve their gameplay.</p>
+                        <a href="#" class="btn">More Details</a>
+                    </div>
+                </div>
+                <div class="right-info">
+                    <h1>y Boi</h1>
+                    <h3>Dhanush</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <span class="prev-btn"><i class="fa-solid fa-chevron-left fa-3x"></i></span>
+            <span class="next-btn"><i class="fa-solid fa-chevron-right fa-3x"></i></span>
+        </div>
+    </section>
+    <script>
+        const nxtBtn = document.querySelector(".next-btn");
+const prvBtn = document.querySelector(".prev-btn");
+const slides = document.querySelectorAll(".slide");
+const numberOfSlides = slides.length;
+let slideNumber= 0;
+// slider next button
+nxtBtn.onclick = () =>{
+    slides.forEach((slide) => {
+        slide.classList.remove('active');
+    });
+
+    slideNumber++;
+
+    if(slideNumber > (numberOfSlides-1)){
+        slideNumber = 0;
+    }
+
+    slides[slideNumber].classList.add('active');
+}
+// slider Prev button
+prvBtn.onclick = () =>{
+    slides.forEach((slide) => {
+        slide.classList.remove('active');
+    });
+
+    slideNumber--;
+
+    if(slideNumber < 0 ){
+        slideNumber = numberOfSlides - 1;
+    }
+
+    slides[slideNumber].classList.add('active');
+}
+
+    </script>
+</body>
+</html>
